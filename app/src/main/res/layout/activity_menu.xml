@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MenuActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chocolate Menu"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Nama :" />
+
+        <EditText
+            android:id="@+id/edit_text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ice Chocolate"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio_button_ori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choco Original  (15000)" />
+
+        <RadioButton
+            android:id="@+id/radio_button_banana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choco Banana  (17000)" />
+
+        <RadioButton
+            android:id="@+id/radio_button_milk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choco Milk  (16000)" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Topping"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/checkbox_milo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bubble  (2000)" />
+
+    <CheckBox
+        android:id="@+id/checkbox_oreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oreo  (2000)" />
+
+    <CheckBox
+        android:id="@+id/checkbox_crunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crunch  (2000)" />
+
+    <Button
+        android:id="@+id/button_tambah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add" />
+</LinearLayout>
