@@ -6,11 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import adel.co.asyst.chocolateorderadel.adapter.MenuAdapter;
 import adel.co.asyst.chocolateorderadel.model.Menu;
 import adel.co.asyst.chocolateorderadel.utility.Constant;
 
@@ -18,10 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ListView orderlv;
     Button addbtn, donebtn;
-    TextView totaltv, nametv;
-    String nama;
-    int reqOrder = 100;
-
+    String nama, menu, topping;
+    int hargatotal;
+    TextView totaltv;
+    MenuAdapter menuAdapter;
+    int reqOrder = 1;
+    ArrayList<Menu> listMenu = new ArrayList<>();
+    ArrayAdapter arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addbtn = findViewById(R.id.button_add);
         donebtn = findViewById(R.id.button_done);
         totaltv = findViewById(R.id.text_view_total);
-        nametv = findViewById(R.id.text_view_name);
 
         addbtn.setOnClickListener(this);
         donebtn.setOnClickListener(this);
-        if (getIntent().getExtras() != null) {
-            nama = getIntent().getExtras().getString(Constant.KEY_NAME);
-            nametv.setText(nama);
-        }
+        menuAdapter = new MenuAdapter(this, listMenu);
+
+        orderlv.setAdapter(menuAdapter);
+        totaltv.setText("" + Constant.KEY_TOTAL);
     }
 
     @Override
@@ -68,7 +75,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == reqOrder) {
             if (resultCode == Activity.RESULT_OK) {
-                Menu menu = data.getExtras().getParcelable("menu");
+                if (data.getExtras() != null) {
+
+                    Bundle bundle = data.getExtras();
+                    nama = bundle.getString(Constant.KEY_NAME);
+                    Log.d("nama", nama);
+                    menu = bundle.getString(Constant.KEY_MENU);
+                    topping = bundle.getString(Constant.KEY_TOPPING);
+                    hargatotal = bundle.getInt(Constant.KEY_HARGA);
+                    Menu menu1 = new Menu(nama, menu, topping, hargatotal);
+                    listMenu.add(menu1);
+                    menuAdapter.notifyDataSetChanged();
+                }
             }
         }
     }

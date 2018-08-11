@@ -25,9 +25,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     RadioButton milkRB, bananaRB, oriRB;
     CheckBox oreocb, milocb, crunchcb;
     Button tambahbtn;
-    String selectedMenu, name;
+    String selectedMenu, name, order, topping;
     EditText nameET;
-    ArrayList<String> listMenu = new ArrayList<>();
+    int hargaMenu = 0, hargaTopping = 0, hargaTotal = 0, total = 0;
     ArrayList<String> listTopping = new ArrayList<>();
 
     @Override
@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         milocb.setOnCheckedChangeListener(this);
         oreocb.setOnCheckedChangeListener(this);
 
-        listMenu.add(selectedMenu);
+
 
     }
 
@@ -63,15 +63,25 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 name = nameET.getText().toString();
                 if (TextUtils.isEmpty(name)) {
                     nameET.setError("Nama tidak boleh kosong");
-                } else {
 
+                } else {
+                    hargaTotal = hargaMenu + hargaTopping;
+                    total += hargaTotal;
+                    topping = "";
+                    for (int i = 0; i < listTopping.size(); i++) {
+                        topping = topping + " " + listTopping.get(i);
+                    }
                     AlertDialog.Builder alertDia = new AlertDialog.Builder(this);
                     alertDia.setTitle("Confirmation").setCancelable(false).setMessage("Are you sure?").
                             setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                                    Intent intent = getIntent();
                                     intent.putExtra(Constant.KEY_NAME, name);
+                                    intent.putExtra(Constant.KEY_MENU, selectedMenu);
+                                    intent.putExtra(Constant.KEY_TOPPING, topping);
+                                    intent.putExtra(Constant.KEY_HARGA, hargaTotal);
+                                    intent.putExtra(Constant.KEY_TOTAL, total);
                                     setResult(Activity.RESULT_OK, intent);
                                     finish();
                                 }
@@ -87,12 +97,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         switch (checkedId) {
             case R.id.radio_button_ori:
                 selectedMenu = "Choco Original";
+                hargaMenu = 15000;
                 break;
             case R.id.radio_button_milk:
                 selectedMenu = "Choco Milk";
+                hargaMenu = 16000;
                 break;
             case R.id.radio_button_banana:
                 selectedMenu = "Choco Banana";
+                hargaMenu = 17000;
                 break;
         }
     }
@@ -104,6 +117,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.checkbox_crunch:
                 if (isChecked) {
                     listTopping.add(" Crunch");
+                    hargaTopping += 2000;
                 } else {
                     listTopping.remove(" Crunch");
                 }
@@ -111,6 +125,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.checkbox_milo:
                 if (isChecked) {
                     listTopping.add(" Milo");
+                    hargaTopping += 2000;
                 } else {
                     listTopping.remove(" Milo");
                 }
@@ -118,6 +133,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.checkbox_oreo:
                 if (isChecked) {
                     listTopping.add(" Oreo");
+                    hargaTopping += 2000;
                 } else {
                     listTopping.remove(" Oreo");
                 }
