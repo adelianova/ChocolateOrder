@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Nama : " />
+            android:text="Nama  " />
 
         <TextView
             android:id="@+id/tv_nama"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Order : " />
+            android:text="Order  " />
 
         <TextView
             android:id="@+id/tv_menu"
@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Topping : " />
+            android:text="Topping  " />
 
         <TextView
             android:id="@+id/tv_topping"
@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Harga : " />
+            android:text="Harga  " />
 
         <TextView
             android:id="@+id/tv_harga"

@@ -114,26 +114,26 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.checkbox_crunch:
                 if (isChecked) {
-                    listTopping.add(" Crunch");
+                    listTopping.add("Crunch ");
                     hargaTopping += 2000;
                 } else {
-                    listTopping.remove(" Crunch");
+                    listTopping.remove("Crunch ");
                 }
                 break;
             case R.id.checkbox_milo:
                 if (isChecked) {
-                    listTopping.add(" Milo");
+                    listTopping.add("Milo ");
                     hargaTopping += 2000;
                 } else {
-                    listTopping.remove(" Milo");
+                    listTopping.remove("Milo ");
                 }
                 break;
             case R.id.checkbox_oreo:
                 if (isChecked) {
-                    listTopping.add(" Oreo");
+                    listTopping.add("Oreo ");
                     hargaTopping += 2000;
                 } else {
-                    listTopping.remove(" Oreo");
+                    listTopping.remove("Oreo ");
                 }
                 break;
         }
