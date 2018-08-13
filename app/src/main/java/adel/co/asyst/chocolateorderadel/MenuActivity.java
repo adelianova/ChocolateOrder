@@ -27,7 +27,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     Button tambahbtn;
     String selectedMenu, name, order, topping;
     EditText nameET;
-    int hargaMenu = 0, hargaTopping = 0, hargaTotal = 0, total = 0;
+    int hargaMenu = 0, hargaTopping = 0, hargaTotal = 0;
     ArrayList<String> listTopping = new ArrayList<>();
 
     @Override
@@ -66,7 +66,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else {
                     hargaTotal = hargaMenu + hargaTopping;
-                    total += hargaTotal;
                     topping = "";
                     for (int i = 0; i < listTopping.size(); i++) {
                         topping = topping + " " + listTopping.get(i);
@@ -81,7 +80,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                                     intent.putExtra(Constant.KEY_MENU, selectedMenu);
                                     intent.putExtra(Constant.KEY_TOPPING, topping);
                                     intent.putExtra(Constant.KEY_HARGA, hargaTotal);
-                                    intent.putExtra(Constant.KEY_TOTAL, total);
                                     setResult(Activity.RESULT_OK, intent);
                                     finish();
                                 }

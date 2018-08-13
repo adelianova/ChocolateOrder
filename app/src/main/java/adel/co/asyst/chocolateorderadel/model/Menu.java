@@ -4,8 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Menu implements Parcelable {
-    String menu;
-    String topping;
     public static final Creator<Menu> CREATOR = new Creator<Menu>() {
         @Override
         public Menu createFromParcel(Parcel in) {
@@ -17,21 +15,31 @@ public class Menu implements Parcelable {
             return new Menu[size];
         }
     };
-    String nama;
+    String menu;
+    String topping;
     int hargatotal;
+    String nama;
 
-    public Menu(String menu, String topping, String nama, int hargatotal) {
+    public Menu(String nama, String menu, String topping, int hargatotal) {
+        this.nama = nama;
         this.menu = menu;
         this.topping = topping;
-        this.nama = nama;
         this.hargatotal = hargatotal;
     }
 
     protected Menu(Parcel in) {
+        nama = in.readString();
         menu = in.readString();
         topping = in.readString();
-        nama = in.readString();
         hargatotal = in.readInt();
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getMenu() {
@@ -50,14 +58,6 @@ public class Menu implements Parcelable {
         this.topping = topping;
     }
 
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
     public int getHargatotal() {
         return hargatotal;
     }
@@ -73,9 +73,9 @@ public class Menu implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nama);
         dest.writeString(menu);
         dest.writeString(topping);
-        dest.writeString(nama);
         dest.writeInt(hargatotal);
     }
 }

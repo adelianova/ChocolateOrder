@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,11 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button addbtn, donebtn;
     String nama, menu, topping;
     int hargatotal;
-    TextView totaltv;
+    TextView ppntv, totaltv, bayartv;
     MenuAdapter menuAdapter;
     int reqOrder = 1;
     ArrayList<Menu> listMenu = new ArrayList<>();
-    ArrayAdapter arrayAdapter;
+    int total, ppn, bayar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addbtn = findViewById(R.id.button_add);
         donebtn = findViewById(R.id.button_done);
         totaltv = findViewById(R.id.text_view_total);
-
+        bayartv = findViewById(R.id.text_view_total_bayar);
+        ppntv = findViewById(R.id.text_view_ppn);
         addbtn.setOnClickListener(this);
         donebtn.setOnClickListener(this);
         menuAdapter = new MenuAdapter(this, listMenu);
@@ -79,12 +78,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Bundle bundle = data.getExtras();
                     nama = bundle.getString(Constant.KEY_NAME);
-                    Log.d("nama", nama);
                     menu = bundle.getString(Constant.KEY_MENU);
                     topping = bundle.getString(Constant.KEY_TOPPING);
                     hargatotal = bundle.getInt(Constant.KEY_HARGA);
                     Menu menu1 = new Menu(nama, menu, topping, hargatotal);
+
+                    total += hargatotal;
+                    ppn = total * 10 / 100;
+                    bayar = total + ppn;
                     listMenu.add(menu1);
+                    ppntv.setText(ppn + "");
+                    totaltv.setText(total + "");
+                    bayartv.setText("" + bayar);
                     menuAdapter.notifyDataSetChanged();
                 }
             }
