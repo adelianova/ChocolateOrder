@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuAdapter = new MenuAdapter(this, listMenu);
 
         orderlv.setAdapter(menuAdapter);
-        totaltv.setText("" + Constant.KEY_TOTAL);
     }
 
     @Override
